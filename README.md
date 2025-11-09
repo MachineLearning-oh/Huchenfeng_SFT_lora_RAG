@@ -25,40 +25,51 @@
 └─ data/                            # 原始 Markdown 语料（请替换为实际路径）
 ```
 
+当然可以 👍
+下面是我帮你重新排好格式的版本，段落清晰、Markdown 结构更规范，也方便读者在 GitHub 上阅读 👇
+
 ---
 
 ## 🧩 环境安装说明
 
-本项目的依赖环境经过多次调试与冲突排查，**尤其是 LangChain 与 Hugging Face 版本兼容问题**较多。  
+本项目的依赖环境经过多次调试与冲突排查，**尤其是 LangChain 与 Hugging Face 版本兼容问题较多**。
 请直接使用我们提供的 `requirements.txt` 来安装环境，确保可复现性与稳定性。
 
 ```bash
 pip install -r requirements.txt
----
-
-> 💡 **提示**：在 GPU 机器上使用 `torch` 的 CUDA 版本并启用 `fp16` / `4-bit` 加载可以显著降低显存占用。
-
----
+```
 
 ## 🔐 关于 Hugging Face Token（重要）
 
 **请务必不要将任何明文 Token（硬编码）提交到 GitHub。**
 
-脚本中有 `hf_login(secret_name)` 函数，会尝试以下方式登录 HF：
+脚本中有 `hf_login(secret_name)` 函数，会尝试以下方式登录 Hugging Face：
 
-1. 环境变量：脚本会读取 `FUCHENFENG_TOKEN`（来自 `secret_name = "Fuchenfeng"` → `FUCHENFENG_TOKEN`）
-2. 如果没找到，会调用 `huggingface_hub.login()`（交互输入）
+1. **环境变量**：脚本会读取
+   `FUCHENFENG_TOKEN`（由 `secret_name = "Fuchenfeng"` → `FUCHENFENG_TOKEN`）
+2. **交互式登录**：如果未找到环境变量，会调用 `huggingface_hub.login()` 进行交互输入。
 
-**使用示例（在 Linux / macOS）：**
+---
+
+### 🧱 使用示例（Linux / macOS）
 
 ```bash
 export FUCHENFENG_TOKEN="YOURTOKEN"
 python hcf_train.py
 ```
 
-或者在 CI / GitHub Actions 中请使用 Secrets（不要把 token 写入代码）。
+---
 
-> ⚠️ 警告：脚本示例中可能包含占位/测试用的硬编码 Token（请删除或替换为安全读取方式）——提交前务必清理。
+### ⚙️ 在 CI / GitHub Actions 中使用 Secrets
+
+请在项目设置中添加 Secret，命名为：
+
+```
+FUCHENFENG_TOKEN
+```
+
+并通过环境变量自动读取。
+
 
 ---
 
@@ -69,7 +80,7 @@ python hcf_train.py
 3. 运行脚本：
 
 ```bash
-python hu_chen_feng_train_and_rag.py
+python hcf_train.py
 ```
 
 脚本默认会按顺序执行：
@@ -131,7 +142,7 @@ python hu_chen_feng_train_and_rag.py
   1. 从 `LORA_ADAPTER_PATH` 加载 LoRA 适配器并挂载到基座模型（支持 4-bit 量化加载基座模型）。
   2. 加载 FAISS 索引并创建 `retriever`，检索 top-k 文本作为上下文。
   3. 使用 `langchain` 的 `create_retrieval_chain`/`create_stuff_documents_chain` 把检索结果与用户输入拼接到 Prompt，然后调用 HF pipeline 生成回答。
-* 启动后脚本进入交互式循环，输入 `停止/exit/退出` 退出。
+* 启动后脚本进入交互式循环，输入 `停止/exit/退出` 或者Ctrl C 退出。
 
 ---
 
