@@ -1,0 +1,36 @@
+# Core Deep Learning Frameworks
+torch==2.9.0
+transformers==4.57.1
+accelerate==1.11.0
+bitsandbytes==0.48.2
+trl==0.25.0
+peft==0.17.1
+
+# Dataset & Data Processing
+datasets==4.4.1
+pandas==2.3.3
+numpy==1.26.4
+scikit-learn==1.7.2
+tqdm==4.67.1
+
+# LangChain & Embeddings
+langchain==0.3.0
+langchain-core==0.3.0
+langchain-community==0.3.0
+langchain-text-splitters==0.3.0
+langchain-huggingface==0.1.0
+sentence-transformers==5.1.2
+faiss-gpu==1.7.2  # 或 faiss-cpu==1.7.2（无GPU时）
+
+# Hugging Face Utilities
+huggingface-hub==0.36.0
+
+# Supporting Tools
+python-dotenv==1.2.1
+requests==2.32.5
+pydantic==2.12.4
+typing-extensions==4.15.0
+
+# Optional but Useful
+openai==1.109.1
+tabulate==0.9.0
