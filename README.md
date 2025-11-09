@@ -1,4 +1,4 @@
-# HuChenFeng — Qwen1.5 风格微调 & RAG 问答示例 🐉
+# HuChenFeng — Qwen1.5 风格微调 & RAG 问答示例 
 
 > 仓库说明：基于 Qwen1.5-4B-Chat 的 LoRA 微调（SFT） + FAISS 向量索引（RAG）演示，用于把“户晨风”风格的直播对话素材做成可检索、可回答的风格化聊天机器人。
 
@@ -34,7 +34,7 @@
 
 ```bash
 pip install -r requirements.txt
-
+---
 
 > 💡 **提示**：在 GPU 机器上使用 `torch` 的 CUDA 版本并启用 `fp16` / `4-bit` 加载可以显著降低显存占用。
 
